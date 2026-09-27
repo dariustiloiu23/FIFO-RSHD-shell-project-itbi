@@ -12,7 +12,7 @@ The project implements a master-worker architecture where a master daemon balanc
 
 2. Master Server (master.sh):
    - Reads settings from config.conf.
-   - Creates the master FIFO ($WKF) and worker pipes ($SLAVE_PREFIX_FIFO<i>.fifo), spawning SLAVES background worker instances.
+   - Creates the master FIFO ($WKF) and worker pipes ($SLAVE_PREFIX_FIFO.fifo), spawning SLAVES background worker instances.
    - Keeps pipes open using persistent file descriptors (exec {fd}>... and exec 3<>...) to avoid blocking.
    - Forwards each incoming request to the next worker in a Round-Robin loop (current_slave++).
    - Cleans up child processes and removes all server pipes on SIGINT / SIGTERM.
